@@ -1,0 +1,5 @@
+dependencies {
+    testAnnotationProcessor project(':pegasus-log-annotation')
+    testImplementation project(':pegasus-test-utils')
+    testImplementation 'com.karuslabs:elementary:3.0.0'
+}
