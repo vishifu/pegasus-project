@@ -49,4 +49,5 @@ public class PegasusException extends Exception {
     public String toString() {
         return getClass().getName() + "::[errorType=" + type + ", message='" + getMessage() + "']";
     }
+
 }
