@@ -1,0 +1,580 @@
+[
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "com.lazy.pegasus.core.common.SpanStringBenchmark.createAndSerializeMessage",
+        "mode" : "thrpt",
+        "threads" : 2,
+        "forks" : 2,
+        "jvm" : "/Users/vishifu/javauser/jdk-21.0.7.jdk/Contents/Home/bin/java",
+        "jvmArgs" : [
+            "-Dfile.encoding=UTF-8",
+            "-Duser.country=VN",
+            "-Duser.language=en",
+            "-Duser.variant"
+        ],
+        "jdkVersion" : "21.0.7",
+        "vmName" : "Java HotSpot(TM) 64-Bit Server VM",
+        "vmVersion" : "21.0.7+8-LTS-245",
+        "warmupIterations" : 10,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 10,
+        "measurementTime" : "1 us",
+        "measurementBatchSize" : 1,
+        "primaryMetric" : {
+            "score" : 63.70695117031288,
+            "scoreError" : 16.69685948690186,
+            "scoreConfidence" : [
+                47.01009168341102,
+                80.40381065721473
+            ],
+            "scorePercentiles" : {
+                "0.0" : 2.822502727131058,
+                "50.0" : 64.27943012107337,
+                "90.0" : 87.20947653593912,
+                "95.0" : 88.5687246533934,
+                "99.0" : 88.62242261988634,
+                "99.9" : 88.62242261988634,
+                "99.99" : 88.62242261988634,
+                "99.999" : 88.62242261988634,
+                "99.9999" : 88.62242261988634,
+                "100.0" : 88.62242261988634
+            },
+            "scoreUnit" : "ops/us",
+            "rawData" : [
+                [
+                    59.48879845770564,
+                    87.54846329002771,
+                    61.330807692036785,
+                    77.97704964153453,
+                    71.90375692266429,
+                    72.32687543364456,
+                    84.15859574914171,
+                    88.62242261988634,
+                    58.725874763038824,
+                    77.52472563416842
+                ],
+                [
+                    2.822502727131058,
+                    61.84358368925473,
+                    51.80132903219148,
+                    48.57776104851011,
+                    47.47069008785989,
+                    53.78047698377443,
+                    52.0423317507502,
+                    66.71527655289204,
+                    75.52224239549739,
+                    73.9554589345476
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "com.lazy.pegasus.core.common.SpanStringBenchmark.createAndSerializeSpanMessage",
+        "mode" : "thrpt",
+        "threads" : 2,
+        "forks" : 2,
+        "jvm" : "/Users/vishifu/javauser/jdk-21.0.7.jdk/Contents/Home/bin/java",
+        "jvmArgs" : [
+            "-Dfile.encoding=UTF-8",
+            "-Duser.country=VN",
+            "-Duser.language=en",
+            "-Duser.variant"
+        ],
+        "jdkVersion" : "21.0.7",
+        "vmName" : "Java HotSpot(TM) 64-Bit Server VM",
+        "vmVersion" : "21.0.7+8-LTS-245",
+        "warmupIterations" : 10,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 10,
+        "measurementTime" : "1 us",
+        "measurementBatchSize" : 1,
+        "primaryMetric" : {
+            "score" : 42.1880494163177,
+            "scoreError" : 13.217265833499798,
+            "scoreConfidence" : [
+                28.970783582817905,
+                55.405315249817505
+            ],
+            "scorePercentiles" : {
+                "0.0" : 2.3131414534437087,
+                "50.0" : 48.6728549548766,
+                "90.0" : 57.614957545322966,
+                "95.0" : 58.30387054462165,
+                "99.0" : 58.33801325838732,
+                "99.9" : 58.33801325838732,
+                "99.99" : 58.33801325838732,
+                "99.999" : 58.33801325838732,
+                "99.9999" : 58.33801325838732,
+                "100.0" : 58.33801325838732
+            },
+            "scoreUnit" : "ops/us",
+            "rawData" : [
+                [
+                    2.3131414534437087,
+                    51.02181790449421,
+                    34.54935971467386,
+                    51.061331742383246,
+                    49.75242508513216,
+                    45.19742030147458,
+                    48.733930461131635,
+                    27.016278441303722,
+                    48.611779448621554,
+                    49.12429087158329
+                ],
+                [
+                    9.988023952095809,
+                    55.32451943279047,
+                    38.14562135848362,
+                    50.84038060804161,
+                    57.253144605564316,
+                    34.47417804145801,
+                    33.25490355819308,
+                    58.33801325838732,
+                    41.10526910402409,
+                    57.655158983073925
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "com.lazy.pegasus.core.common.SpanStringBenchmark.serializeMessage",
+        "mode" : "thrpt",
+        "threads" : 2,
+        "forks" : 2,
+        "jvm" : "/Users/vishifu/javauser/jdk-21.0.7.jdk/Contents/Home/bin/java",
+        "jvmArgs" : [
+            "-Dfile.encoding=UTF-8",
+            "-Duser.country=VN",
+            "-Duser.language=en",
+            "-Duser.variant"
+        ],
+        "jdkVersion" : "21.0.7",
+        "vmName" : "Java HotSpot(TM) 64-Bit Server VM",
+        "vmVersion" : "21.0.7+8-LTS-245",
+        "warmupIterations" : 10,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 10,
+        "measurementTime" : "1 us",
+        "measurementBatchSize" : 1,
+        "primaryMetric" : {
+            "score" : 0.020729483945146305,
+            "scoreError" : 0.0026053390094054976,
+            "scoreConfidence" : [
+                0.018124144935740806,
+                0.023334822954551804
+            ],
+            "scorePercentiles" : {
+                "0.0" : 0.013005685874084958,
+                "50.0" : 0.02139017273073241,
+                "90.0" : 0.023468662578822703,
+                "95.0" : 0.02596299050110844,
+                "99.0" : 0.026092684675309806,
+                "99.9" : 0.026092684675309806,
+                "99.99" : 0.026092684675309806,
+                "99.999" : 0.026092684675309806,
+                "99.9999" : 0.026092684675309806,
+                "100.0" : 0.026092684675309806
+            },
+            "scoreUnit" : "ops/us",
+            "rawData" : [
+                [
+                    0.013005685874084958,
+                    0.022160452996975687,
+                    0.018465531594343422,
+                    0.02125811878041116,
+                    0.018222860817196408,
+                    0.023498801191282566,
+                    0.026092684675309806,
+                    0.019493969456343442,
+                    0.020999218534102585,
+                    0.01890054966666315
+                ],
+                [
+                    0.015428946240512456,
+                    0.02262443902053949,
+                    0.02006273932848658,
+                    0.02250310930800785,
+                    0.01909285843210615,
+                    0.022668220693498844,
+                    0.021522226681053663,
+                    0.022474020886777614,
+                    0.022917829658546256,
+                    0.023197415066683925
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "com.lazy.pegasus.core.common.SpanStringBenchmark.serializeSpanMessage",
+        "mode" : "thrpt",
+        "threads" : 2,
+        "forks" : 2,
+        "jvm" : "/Users/vishifu/javauser/jdk-21.0.7.jdk/Contents/Home/bin/java",
+        "jvmArgs" : [
+            "-Dfile.encoding=UTF-8",
+            "-Duser.country=VN",
+            "-Duser.language=en",
+            "-Duser.variant"
+        ],
+        "jdkVersion" : "21.0.7",
+        "vmName" : "Java HotSpot(TM) 64-Bit Server VM",
+        "vmVersion" : "21.0.7+8-LTS-245",
+        "warmupIterations" : 10,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 10,
+        "measurementTime" : "1 us",
+        "measurementBatchSize" : 1,
+        "primaryMetric" : {
+            "score" : 0.9323970545653518,
+            "scoreError" : 0.16751762524162006,
+            "scoreConfidence" : [
+                0.7648794293237318,
+                1.0999146798069719
+            ],
+            "scorePercentiles" : {
+                "0.0" : 0.44117539456520066,
+                "50.0" : 0.9706655578204014,
+                "90.0" : 1.1504104208615895,
+                "95.0" : 1.1919442786996988,
+                "99.0" : 1.1940537194583112,
+                "99.9" : 1.1940537194583112,
+                "99.99" : 1.1940537194583112,
+                "99.999" : 1.1940537194583112,
+                "99.9999" : 1.1940537194583112,
+                "100.0" : 1.1940537194583112
+            },
+            "scoreUnit" : "ops/us",
+            "rawData" : [
+                [
+                    1.0216181543955758,
+                    1.0742329786952385,
+                    0.78713985801402,
+                    1.0413125102325487,
+                    0.868599991914753,
+                    0.8094300593824131,
+                    1.1518649042860636,
+                    0.8130359049264031,
+                    1.0449612403100774,
+                    1.1373200700413215
+                ],
+                [
+                    0.44117539456520066,
+                    0.8082411458790765,
+                    0.7946763460375075,
+                    1.0712837705402753,
+                    1.1940537194583112,
+                    0.7731049540252349,
+                    0.6855348109841806,
+                    0.9197129612452271,
+                    1.1113738518996277,
+                    1.0992684644739805
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "com.lazy.pegasus.core.common.SpanStringBenchmark.createAndSerializeMessage",
+        "mode" : "avgt",
+        "threads" : 2,
+        "forks" : 2,
+        "jvm" : "/Users/vishifu/javauser/jdk-21.0.7.jdk/Contents/Home/bin/java",
+        "jvmArgs" : [
+            "-Dfile.encoding=UTF-8",
+            "-Duser.country=VN",
+            "-Duser.language=en",
+            "-Duser.variant"
+        ],
+        "jdkVersion" : "21.0.7",
+        "vmName" : "Java HotSpot(TM) 64-Bit Server VM",
+        "vmVersion" : "21.0.7+8-LTS-245",
+        "warmupIterations" : 10,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 10,
+        "measurementTime" : "1 us",
+        "measurementBatchSize" : 1,
+        "primaryMetric" : {
+            "score" : 0.4647632986198335,
+            "scoreError" : 1.689039987233826,
+            "scoreConfidence" : [
+                -1.2242766886139924,
+                2.1538032858536593
+            ],
+            "scorePercentiles" : {
+                "0.0" : 0.023066871901547117,
+                "50.0" : 0.028386475409581637,
+                "90.0" : 0.055309128911192315,
+                "95.0" : 8.294895833975039,
+                "99.0" : 8.7285,
+                "99.9" : 8.7285,
+                "99.99" : 8.7285,
+                "99.999" : 8.7285,
+                "99.9999" : 8.7285,
+                "100.0" : 8.7285
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    8.7285,
+                    0.028683158016115873,
+                    0.05641667950088649,
+                    0.028979107275559766,
+                    0.02837947431088179,
+                    0.0453411736039445,
+                    0.03039319766729242,
+                    0.028393476508281484,
+                    0.029798397555050274,
+                    0.02869356231201075
+                ],
+                [
+                    0.024076458115497655,
+                    0.023715128718657844,
+                    0.02724838510496818,
+                    0.024281189089375477,
+                    0.023373522348717618,
+                    0.04303359688146456,
+                    0.023066871901547117,
+                    0.02437457388190547,
+                    0.023995502732243164,
+                    0.024522516872269223
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "com.lazy.pegasus.core.common.SpanStringBenchmark.createAndSerializeSpanMessage",
+        "mode" : "avgt",
+        "threads" : 2,
+        "forks" : 2,
+        "jvm" : "/Users/vishifu/javauser/jdk-21.0.7.jdk/Contents/Home/bin/java",
+        "jvmArgs" : [
+            "-Dfile.encoding=UTF-8",
+            "-Duser.country=VN",
+            "-Duser.language=en",
+            "-Duser.variant"
+        ],
+        "jdkVersion" : "21.0.7",
+        "vmName" : "Java HotSpot(TM) 64-Bit Server VM",
+        "vmVersion" : "21.0.7+8-LTS-245",
+        "warmupIterations" : 10,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 10,
+        "measurementTime" : "1 us",
+        "measurementBatchSize" : 1,
+        "primaryMetric" : {
+            "score" : 0.1540604544720583,
+            "scoreError" : 0.24279911857922204,
+            "scoreConfidence" : [
+                -0.08873866410716374,
+                0.39685957305128033
+            ],
+            "scorePercentiles" : {
+                "0.0" : 0.03553660147166908,
+                "50.0" : 0.04009474306181439,
+                "90.0" : 0.40278022349054504,
+                "95.0" : 1.2062909710068421,
+                "99.0" : 1.2481012780112046,
+                "99.9" : 1.2481012780112046,
+                "99.99" : 1.2481012780112046,
+                "99.999" : 1.2481012780112046,
+                "99.9999" : 1.2481012780112046,
+                "100.0" : 1.2481012780112046
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    0.0397444813514283,
+                    0.07242656424976848,
+                    0.19042225222546078,
+                    0.4118951379239672,
+                    1.2481012780112046,
+                    0.037587079554431024,
+                    0.03610789759860086,
+                    0.055906000477374415,
+                    0.03562802558323028,
+                    0.03553660147166908
+                ],
+                [
+                    0.25,
+                    0.3207459935897436,
+                    0.05898849896345501,
+                    0.0363963776326313,
+                    0.03819918652775796,
+                    0.06222204816373445,
+                    0.03628293761528194,
+                    0.036244043724678446,
+                    0.04044500477220047,
+                    0.03832968000454856
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "com.lazy.pegasus.core.common.SpanStringBenchmark.serializeMessage",
+        "mode" : "avgt",
+        "threads" : 2,
+        "forks" : 2,
+        "jvm" : "/Users/vishifu/javauser/jdk-21.0.7.jdk/Contents/Home/bin/java",
+        "jvmArgs" : [
+            "-Dfile.encoding=UTF-8",
+            "-Duser.country=VN",
+            "-Duser.language=en",
+            "-Duser.variant"
+        ],
+        "jdkVersion" : "21.0.7",
+        "vmName" : "Java HotSpot(TM) 64-Bit Server VM",
+        "vmVersion" : "21.0.7+8-LTS-245",
+        "warmupIterations" : 10,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 10,
+        "measurementTime" : "1 us",
+        "measurementBatchSize" : 1,
+        "primaryMetric" : {
+            "score" : 94.34747499999999,
+            "scoreError" : 17.721537712621593,
+            "scoreConfidence" : [
+                76.62593728737839,
+                112.06901271262159
+            ],
+            "scorePercentiles" : {
+                "0.0" : 56.896,
+                "50.0" : 89.76025,
+                "90.0" : 117.77095,
+                "95.0" : 152.554175,
+                "99.0" : 154.375,
+                "99.9" : 154.375,
+                "99.99" : 154.375,
+                "99.999" : 154.375,
+                "99.9999" : 154.375,
+                "100.0" : 154.375
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    56.896,
+                    117.9585,
+                    79.9375,
+                    78.6045,
+                    110.8545,
+                    154.375,
+                    100.875,
+                    79.7085,
+                    78.38525,
+                    109.0
+                ],
+                [
+                    96.021,
+                    89.2495,
+                    116.083,
+                    84.2915,
+                    90.271,
+                    86.14574999999999,
+                    97.938,
+                    90.8545,
+                    84.917,
+                    84.5835
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.37",
+        "benchmark" : "com.lazy.pegasus.core.common.SpanStringBenchmark.serializeSpanMessage",
+        "mode" : "avgt",
+        "threads" : 2,
+        "forks" : 2,
+        "jvm" : "/Users/vishifu/javauser/jdk-21.0.7.jdk/Contents/Home/bin/java",
+        "jvmArgs" : [
+            "-Dfile.encoding=UTF-8",
+            "-Duser.country=VN",
+            "-Duser.language=en",
+            "-Duser.variant"
+        ],
+        "jdkVersion" : "21.0.7",
+        "vmName" : "Java HotSpot(TM) 64-Bit Server VM",
+        "vmVersion" : "21.0.7+8-LTS-245",
+        "warmupIterations" : 10,
+        "warmupTime" : "1 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 10,
+        "measurementTime" : "1 us",
+        "measurementBatchSize" : 1,
+        "primaryMetric" : {
+            "score" : 2.6277183229645806,
+            "scoreError" : 1.8009246133201438,
+            "scoreConfidence" : [
+                0.8267937096444369,
+                4.428642936284724
+            ],
+            "scorePercentiles" : {
+                "0.0" : 1.677899209486166,
+                "50.0" : 1.8665502083333334,
+                "90.0" : 3.5471682692307707,
+                "95.0" : 10.710249999999993,
+                "99.0" : 11.084263157894735,
+                "99.9" : 11.084263157894735,
+                "99.99" : 11.084263157894735,
+                "99.999" : 11.084263157894735,
+                "99.9999" : 11.084263157894735,
+                "100.0" : 11.084263157894735
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    2.8545,
+                    1.7923928571428571,
+                    11.084263157894735,
+                    1.7076268472906404,
+                    1.9564898097826087,
+                    2.8713358585858586,
+                    2.6011608695652173,
+                    1.8721392045454546,
+                    1.7170155279503105,
+                    1.970491190557646
+                ],
+                [
+                    3.604,
+                    1.8210580542264752,
+                    3.0021833333333334,
+                    1.677899209486166,
+                    1.7991071428571428,
+                    1.7920283027988593,
+                    1.7169880952380954,
+                    1.8170430936073059,
+                    3.0356826923076925,
+                    1.8609612121212122
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    }
+]
+
+
