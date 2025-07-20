@@ -21,6 +21,13 @@ allprojects {
             languageVersion = JavaLanguageVersion.of(21)
         }
     }
+
+    sourceSets {
+        jmh {
+            compileClasspath += sourceSets.test.runtimeClasspath
+            runtimeClasspath += sourceSets.test.runtimeClasspath
+        }
+    }
 }
 
 subprojects {
@@ -33,6 +40,12 @@ subprojects {
 
         testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
         testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+
+
+        jmhCompileOnly project
+        jmhCompileOnly 'org.openjdk.jmh:jmh-core:1.37'
+        jmhCompileOnly 'org.openjdk.jmh:jmh-generator-annprocess:1.37'
+        jmhAnnotationProcessor 'org.openjdk.jmh:jmh-generator-annprocess:1.37'
     }
 
     test {
@@ -44,4 +57,5 @@ subprojects {
             jvmArgs("-XX:+EnableDynamicAgentLoading")
         }
     }
+
 }

@@ -2,3 +2,17 @@ dependencies {
     implementation 'io.netty:netty-common:4.2.3.Final'
     implementation 'io.netty:netty-buffer:4.2.2.Final'
 }
+
+tasks.register("jmh", JavaExec, {
+    classpath = sourceSets.jmh.compileClasspath + sourceSets.jmh.runtimeClasspath
+    main = 'org.openjdk.jmh.Main'
+
+    def include = project.properties.get("include", "");
+    def format = project.properties.get("format", "json");
+    def resultFile = file("build/reports/jmh/result.${format}")
+    resultFile.parentFile.mkdirs()
+
+    args include
+    args '-rf', format
+    args '-rff', resultFile
+})
