@@ -3,10 +3,16 @@ package com.lazy.pegasus.core.utils;
 import io.netty.buffer.ByteBuf;
 import io.netty.util.internal.PlatformDependent;
 
+import java.util.Arrays;
+
 /**
  * Collection of byte utilities
  */
 public final class BytesUtil {
+
+    public static byte[] subseq(final byte[] bs, final int from, final int len) {
+        return Arrays.copyOfRange(bs, from, from + len);
+    }
 
     public static boolean equals(final byte[] left, final byte[] right) {
         return equals(left, right, 0, right.length);

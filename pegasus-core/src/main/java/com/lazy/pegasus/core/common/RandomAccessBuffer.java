@@ -181,11 +181,12 @@ public interface RandomAccessBuffer {
      * <p>
      * Note that this method do NOT modify {@code readIndex} or {@code writeIndex} in this buffer.
      *
-     * @param index index to start transferring in source.
-     * @param dest  destination buffer.
+     * @param index index to start transferring in source
+     * @param dest  destination buffer
+     * @throws IndexOutOfBoundsException if index is less than 0,
+     *                                   or if {@code index + dest.writableBytes()} is less than this buffer capacity
      */
     void getBytes(int index, PegasusBuffer dest);
-
 
     /**
      * Transfers this buffer's data of range {@code [index, index + len)} to the given destination at the specified index.
@@ -193,9 +194,12 @@ public interface RandomAccessBuffer {
      * <p>
      * Note that this method do NOT modify {@code readIndex} or {@code writeIndex} in this buffer.
      *
-     * @param index index to start transferring in source.
-     * @param dest  destination buffer.
-     * @param len   number of bytes to transfer.
+     * @param index index to start transferring in source
+     * @param dest  destination buffer
+     * @param len   number of bytes to transfer
+     * @throws IndexOutOfBoundsException if index is less than 0,
+     *                                   or if len is greater than destination writable bytes,
+     *                                   or if {@code index + len} greater than this capacity
      */
     void getBytes(int index, PegasusBuffer dest, int len);
 
@@ -204,10 +208,13 @@ public interface RandomAccessBuffer {
      * <p>
      * Note that this method do NOT modify {@code readIndex} or {@code writeIndex} in this buffer.
      *
-     * @param index     index to start transferring in source.
-     * @param dest      destination buffer.
-     * @param destStart index of destination buffer start to write.
-     * @param len       number of bytes to transfer.
+     * @param index     index to start transferring in source
+     * @param dest      destination buffer
+     * @param destStart index of destination buffer start to write
+     * @param len       number of bytes to transfer
+     * @throws IndexOutOfBoundsException if index is less than 0, or if destStart is less than 0,
+     *                                   or if {@code index + len} is greater than this buffer's capacity,
+     *                                   or if {@code destStart + len} is greater than dest buffer's capacity
      */
     void getBytes(int index, PegasusBuffer dest, int destStart, int len);
 
@@ -216,8 +223,10 @@ public interface RandomAccessBuffer {
      * <p>
      * Note that this method do NOT modify {@code readIndex} or {@code writeIndex} in this buffer.
      *
-     * @param index index start to transfer in this buffer.
-     * @param dest  destination byte array.
+     * @param index index start to transfer in this buffer
+     * @param dest  destination byte array
+     * @throws IndexOutOfBoundsException if index is less than 0,
+     *                                   or {@code index + dest.length} is greater than this buffer's capacity
      */
     void getBytes(int index, byte[] dest);
 
@@ -227,10 +236,13 @@ public interface RandomAccessBuffer {
      * <p>
      * Note that this method do NOT modify {@code readIndex} or {@code writeIndex} in this buffer.
      *
-     * @param index     index start to transfer in this buffer.
-     * @param dest      destination byte array.
-     * @param destStart index of destination to start write.
-     * @param len       number of bytes to transfer.
+     * @param index     index start to transfer in this buffer
+     * @param dest      destination byte array
+     * @param destStart index of destination to start write
+     * @param len       number of bytes to transfer
+     * @throws IndexOutOfBoundsException if index is less than 0, or if destStart is less than 0,
+     *                                   or if {@code index + len} is greater than this buffer's capacity,
+     *                                   or if @{destStart + len} is greater than destination buffer's capacity
      */
     void getBytes(int index, byte[] dest, int destStart, int len);
 
@@ -239,8 +251,10 @@ public interface RandomAccessBuffer {
      * <p>
      * Note that this method do NOT modify {@code readIndex} or {@code writeIndex} in this buffer.
      *
-     * @param index index to start transfer in this buffer.
-     * @param dest  destination ByteBuffer.
+     * @param index index to start transfer in this buffer
+     * @param dest  destination ByteBuffer
+     * @throws IndexOutOfBoundsException if index is less than 0,
+     *                                   or if {@code index + dest.remaining()} is greater than this buffer's capacity
      */
     void getBytes(int index, ByteBuffer dest);
 
@@ -249,8 +263,10 @@ public interface RandomAccessBuffer {
      * <p>
      * Note that this method do NOT modify {@code readIndex} or {@code writeIndex} in this buffer.
      *
-     * @param index index to start writing in this buffer.
-     * @param src   source buffer to transfer from.
+     * @param index index to start writing in this buffer
+     * @param src   source buffer to transfer from
+     * @throws IndexOutOfBoundsException if index is less than 0,
+     *                                   or if {@code index + src.readableBytes} is greater than this buffer's capacity
      */
     void setBytes(int index, PegasusBuffer src);
 
@@ -260,9 +276,12 @@ public interface RandomAccessBuffer {
      * <p>
      * Note that this method do NOT modify {@code readIndex} or {@code writeIndex} in this buffer.
      *
-     * @param index index to start writing in this buffer.
-     * @param src   source buffer to transfer from.
-     * @param len   number of bytes to transfer.
+     * @param index index to start writing in this buffer
+     * @param src   source buffer to transfer from
+     * @param len   number of bytes to transfer
+     * @throws IndexOutOfBoundsException if index is less than 0,
+     *                                   or if {@code index + len} is greater than this capacity,
+     *                                   or if len is greater than {@code src.readableBytes}
      */
     void setBytes(int index, PegasusBuffer src, int len);
 
@@ -272,10 +291,14 @@ public interface RandomAccessBuffer {
      * <p>
      * Note that this method do NOT modify {@code readIndex} or {@code writeIndex} in this buffer.
      *
-     * @param index    index to start writing in this buffer.
-     * @param src      source buffer to transfer from.
-     * @param srcStart index of source to start transfer.
-     * @param len      number of bytes to transfer.
+     * @param index    index to start writing in this buffer
+     * @param src      source buffer to transfer from
+     * @param srcStart index of source to start transfer
+     * @param len      number of bytes to transfer
+     * @throws IndexOutOfBoundsException if index is less than 0,
+     *                                   or if {@code index + len} is greater than this buffer capacity,
+     *                                   or if len is greater than {@code src.readableBytes},
+     *                                   or if {@code srcStart + len} is greater than src capacity
      */
     void setBytes(int index, PegasusBuffer src, int srcStart, int len);
 
@@ -284,8 +307,10 @@ public interface RandomAccessBuffer {
      * <p>
      * Note that this method do NOT modify {@code readIndex} or {@code writeIndex} in this buffer.
      *
-     * @param index index to start writing in this buffer.
-     * @param src   source buffer to transfer from.
+     * @param index index to start writing in this buffer
+     * @param src   source buffer to transfer from
+     * @throws IndexOutOfBoundsException if index is less than 0,
+     *                                   or if {@code index + src.length} is greater than this buffer capacity
      */
     void setBytes(int index, byte[] src);
 
@@ -295,10 +320,14 @@ public interface RandomAccessBuffer {
      * <p>
      * Note that this method do NOT modify {@code readIndex} or {@code writeIndex} in this buffer.
      *
-     * @param index    index start writing in this buffer.
-     * @param src      source buffer to transfer from.
-     * @param srcStart index of source to start transfer.
-     * @param len      number of bytes to transfer.
+     * @param index    index start writing in this buffer
+     * @param src      source buffer to transfer from
+     * @param srcStart index of source to start transfer
+     * @param len      number of bytes to transfer
+     * @throws IndexOutOfBoundsException if index is less than 0,
+     *                                   or if {@code index + len} is greater than this buffer capacity,
+     *                                   or if len is greater than {@code src.readableBytes},
+     *                                   or if {@code srcStart + len} is greater than {@code src.capacity}
      */
     void setBytes(int index, byte[] src, int srcStart, int len);
 
@@ -307,8 +336,10 @@ public interface RandomAccessBuffer {
      * <p>
      * Note that this method do NOT modify {@code readIndex} or {@code writeIndex} in this buffer.
      *
-     * @param index index start writing in this buffer.
-     * @param src   ByteBuffer source.
+     * @param index index start writing in this buffer
+     * @param src   ByteBuffer source
+     * @throws IndexOutOfBoundsException if index is less than 0,
+     *                                   or if {@code index + src.remaining} is greater than this buffer capacity
      */
     void setBytes(int index, ByteBuffer src);
 
