@@ -4,7 +4,10 @@ import com.lazy.pegasus.core.common.SpanString;
 
 import java.util.Random;
 
-public class RandsUtil {
+/**
+ * Collection of random utilities
+ */
+public final class RandsUtil {
 
     private static final Random rands = new Random(System.currentTimeMillis());
 

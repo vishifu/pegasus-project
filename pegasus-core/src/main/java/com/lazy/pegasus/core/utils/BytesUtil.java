@@ -3,7 +3,10 @@ package com.lazy.pegasus.core.utils;
 import io.netty.buffer.ByteBuf;
 import io.netty.util.internal.PlatformDependent;
 
-public class BytesUtil {
+/**
+ * Collection of byte utilities
+ */
+public final class BytesUtil {
 
     public static boolean equals(final byte[] left, final byte[] right) {
         return equals(left, right, 0, right.length);
@@ -91,7 +94,7 @@ public class BytesUtil {
     }
 
     private static boolean equalsOnHeap(final byte[] left, final ByteBuf buf, final int offset, final int len) {
-        if (left.length != len){
+        if (left.length != len) {
             return false;
         }
 
@@ -110,7 +113,7 @@ public class BytesUtil {
 
         int charsIndex = 0;
         long bytesAdrr = address + offset;
-        for (int i  =0; i < longCount; i++) {
+        for (int i = 0; i < longCount; i++) {
             final long charLong = PlatformDependent.getLong(left, charsIndex);
             final long byteLong = PlatformDependent.getLong(bytesAdrr);
             if (charLong != byteLong) {
@@ -120,7 +123,7 @@ public class BytesUtil {
             charsIndex += 8;
             bytesAdrr += 8;
         }
-        for (int i  =0; i < byteCount; i++) {
+        for (int i = 0; i < byteCount; i++) {
             final byte charLong = PlatformDependent.getByte(left, charsIndex);
             final byte byteLong = PlatformDependent.getByte(bytesAdrr);
             if (charLong != byteLong) {
