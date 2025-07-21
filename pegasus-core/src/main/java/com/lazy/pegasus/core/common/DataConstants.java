@@ -3,7 +3,7 @@ package com.lazy.pegasus.core.common;
 /**
  * Defines all constants for data type of Pegasus, it will be size of data type, data type id.
  */
-public class DataConstants {
+public final class DataConstants {
 
     public static final int SIZE_BOOLEAN = 1;
     public static final int SIZE_BYTE = 1;

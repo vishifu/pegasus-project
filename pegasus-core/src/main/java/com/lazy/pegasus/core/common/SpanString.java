@@ -5,6 +5,7 @@ import io.netty.buffer.ByteBuf;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.Objects;
  * This class can be used for heavily throughout-put as String, it stores string as a simple {@code byte[]}, this can
  * minimize the cost of copying between String objects.
  */
-public class SpanString implements CharSequence, Serializable, Comparable<SpanString> {
+public final class SpanString implements CharSequence, Serializable, Comparable<SpanString> {
 
     @Serial
     private static final long serialVersionUID = 5107791929712364362L;
@@ -40,6 +41,21 @@ public class SpanString implements CharSequence, Serializable, Comparable<SpanSt
         }
 
         return new SpanString(s);
+    }
+
+    /**
+     * Creates an interned {@link SpanString} constructed from string parameter via a pool, if possible.
+     *
+     * @param s    initial string
+     * @param pool string pool
+     * @return newly interned {@link SpanString} from initial string
+     */
+    public static SpanString of(final String s, SpanStringStringPool pool) {
+        if (pool == null) {
+            return SpanString.of(s);
+        }
+
+        return pool.getOrCreate(s);
     }
 
     /**

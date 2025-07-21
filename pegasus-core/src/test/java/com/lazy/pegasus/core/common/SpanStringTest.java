@@ -193,6 +193,23 @@ class SpanStringTest {
         assertEquals(1 + DataConstants.SIZE_INT + s.getData().length, SpanString.sizeOfNullableStr(s));
     }
 
+    @Test
+    void poolStringArgument() {
+        final String str = "pooled";
+        final SpanString s = create(str);
+        final String str1 = s.toString();
+
+        assertSame(str, str1, "SpanString is not pooling the given string");
+
+        final int size = 8;
+        final SpanStringStringPool pool = new SpanStringStringPool(size);
+        for (int i = 0; i < size; i++) {
+            final String si = Integer.toString(i);
+            final SpanString pooled = pool.getOrCreate(si);
+            assertSame(pooled, pool.getOrCreate(si));
+        }
+    }
+
     private SpanString create(String s) {
         return SpanString.of(s);
     }
