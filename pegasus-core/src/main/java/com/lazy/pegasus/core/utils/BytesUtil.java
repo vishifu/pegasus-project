@@ -14,6 +14,20 @@ public final class BytesUtil {
         return Arrays.copyOfRange(bs, from, from + len);
     }
 
+    public static byte[] readFromByteBuf(final ByteBuf buf) {
+        return readFromByteBuf(buf, buf.readInt());
+    }
+
+    public static byte[] readFromByteBuf(final ByteBuf buf, final int len) {
+        if (len > buf.readableBytes()) {
+            throw new IndexOutOfBoundsException("Required len is out of bound, length="+len + ",readable="+buf.readableBytes());
+        }
+
+        byte[] data = new byte[len];
+        buf.readBytes(data);
+        return data;
+    }
+
     public static boolean equals(final byte[] left, final byte[] right) {
         return equals(left, right, 0, right.length);
     }

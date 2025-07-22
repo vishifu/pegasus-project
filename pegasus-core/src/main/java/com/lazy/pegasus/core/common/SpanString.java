@@ -78,6 +78,47 @@ public final class SpanString implements CharSequence, Serializable, Comparable<
     }
 
     /**
+     * Creates a {@link SpanString} from a number of a netty buffer,
+     * read number of bytes (N) at the current {@code readerIndex} of netty buffer, and takes N following bytes to construct
+     * a {@link SpanString}.
+     *
+     * @param nettyBuf netty buffer
+     * @return newly SpanString
+     */
+    public static SpanString of(ByteBuf nettyBuf) {
+        int len = nettyBuf.readInt();
+        return of(nettyBuf, len);
+    }
+
+    /**
+     * Creates a {@link SpanString} from a number of a netty buffer,
+     * read number of bytes from current {@code readerIndex}, and constructs a {@link SpanString}.
+     *
+     * @param nettyBuf netty buffer
+     * @param len      number of bytes to read from netty buffer
+     * @return newly SpanString
+     */
+    public static SpanString of(ByteBuf nettyBuf, int len) {
+        byte[] data = BytesUtil.readFromByteBuf(nettyBuf, len);
+        return of(data);
+    }
+
+    public static void writeNullableSpanString(final ByteBuf buffer, SpanString s) {
+        if (s == null) {
+            buffer.writeByte(DataConstants.NULL);
+        } else {
+            buffer.writeByte(DataConstants.NOT_NULL);
+            writeSpanString(buffer, s);
+        }
+    }
+
+    public static void writeSpanString(final ByteBuf buffer, final SpanString s) {
+        byte[] data = s.getData();
+        buffer.writeInt(data.length);
+        buffer.writeBytes(data);
+    }
+
+    /**
      * @param str string to check.
      * @return the size of SpanString.
      */

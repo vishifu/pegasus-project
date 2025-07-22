@@ -1,7 +1,10 @@
 package com.lazy.pegasus.core.buffer;
 
+import com.lazy.pegasus.core.common.DataConstants;
 import com.lazy.pegasus.core.common.PegasusBuffer;
 import com.lazy.pegasus.core.common.SpanString;
+import com.lazy.pegasus.core.utils.BytesUtil;
+import com.lazy.pegasus.core.utils.Utf8Util;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 
@@ -28,7 +31,6 @@ public class PegasusChannelBuffer implements PegasusBuffer {
      *
      * @param buffer     backed netty buffer
      * @param releasable allow release
-     * @param pooled     allow pool
      */
     public PegasusChannelBuffer(final ByteBuf buffer, boolean releasable) {
         if (!releasable) {
@@ -321,7 +323,7 @@ public class PegasusChannelBuffer implements PegasusBuffer {
 
     @Override
     public void setBytes(int index, byte[] src, int srcStart, int len) {
-        this.buffer.setBytes(index, src, srcStart,  len);
+        this.buffer.setBytes(index, src, srcStart, len);
     }
 
     @Override
@@ -331,62 +333,72 @@ public class PegasusChannelBuffer implements PegasusBuffer {
 
     @Override
     public byte readByte() {
-        return 0;
+        return this.buffer.readByte();
     }
 
     @Override
     public int readUnsignedByte() {
-        return 0;
+        return this.buffer.readUnsignedByte();
     }
 
     @Override
     public short readShort() {
-        return 0;
+        return this.buffer.readShort();
     }
 
     @Override
     public int readUnsignedShort() {
-        return 0;
+        return this.buffer.readUnsignedShort();
     }
 
     @Override
     public int readInt() {
-        return 0;
+        return this.buffer.readInt();
     }
 
     @Override
     public long readUnsignedInt() {
-        return 0;
+        return this.buffer.readUnsignedInt();
     }
 
     @Override
     public Integer readNullableInt() {
-        return null;
+        int b = readByte();
+        if (b == DataConstants.NULL) {
+            return null;
+        }
+
+        return readInt();
     }
 
     @Override
     public long readLong() {
-        return 0;
+        return this.buffer.readLong();
     }
 
     @Override
     public Long readNullableLong() {
-        return null;
+        int b = readByte();
+        if (b == DataConstants.NULL) {
+            return null;
+        }
+
+        return readLong();
     }
 
     @Override
     public char readChar() {
-        return 0;
+        return this.buffer.readChar();
     }
 
     @Override
     public float readFloat() {
-        return 0;
+        return this.buffer.readFloat();
     }
 
     @Override
     public double readDouble() {
-        return 0;
+        return this.buffer.readDouble();
     }
 
     @Override
@@ -396,186 +408,223 @@ public class PegasusChannelBuffer implements PegasusBuffer {
 
     @Override
     public boolean readBoolean() {
-        return false;
+        return readByte() != 0;
     }
 
     @Override
     public Boolean readNullableBoolean() {
-        return null;
+        byte b = readByte();
+        if (b == DataConstants.NULL) {
+            return null;
+        }
+
+        return readBoolean();
     }
 
     @Override
     public String readString() {
-        return null;
+        return readString0();
     }
 
     @Override
     public SpanString readSpanString() {
-        return null;
+        return SpanString.of(this.buffer);
     }
 
     @Override
     public String readUTF() {
-        return null;
+        return Utf8Util.readUtf8(this.buffer);
     }
 
     @Override
     public void readBytes(PegasusBuffer dest) {
-
+        this.buffer.readBytes(dest.byteBuf());
     }
 
     @Override
     public void readBytes(PegasusBuffer dest, int len) {
-
+        this.buffer.readBytes(dest.byteBuf(), len);
     }
 
     @Override
     public void readBytes(PegasusBuffer dest, int destStart, int len) {
-
+        this.buffer.readBytes(dest.byteBuf(), destStart, len);
     }
 
     @Override
     public void readBytes(byte[] dest) {
-
+        this.buffer.readBytes(dest);
     }
 
     @Override
     public void readBytes(byte[] dest, int destStart, int len) {
-
+        this.buffer.readBytes(dest, destStart, len);
     }
 
     @Override
     public void readBytes(ByteBuffer dest) {
-
+        this.buffer.readBytes(dest);
     }
 
     @Override
     public void readFully(byte[] b) throws IOException {
-
+        readBytes(b);
     }
 
     @Override
     public void readFully(byte[] b, int off, int len) throws IOException {
-
+        readBytes(b, off, len);
     }
 
     @Override
     public int skipBytes(int n) {
-        return 0;
+        this.buffer.skipBytes(n);
+        return n;
     }
 
     @Override
     public void writeByte(byte b) {
-
+        this.buffer.writeByte(b);
     }
 
     @Override
     public void writeShort(short i16) {
-
+        this.buffer.writeShort(i16);
     }
 
     @Override
     public void writeInt(int i32) {
-
+        this.buffer.writeShort(i32);
     }
 
     @Override
     public void writeNullableInt(Integer i32) {
-
+        if (i32 == null) {
+            this.buffer.writeByte(DataConstants.NULL);
+        } else {
+            this.buffer.writeByte(DataConstants.NOT_NULL);
+            writeInt(i32);
+        }
     }
 
     @Override
     public void writeLong(long i64) {
-
+        this.buffer.writeLong(i64);
     }
 
     @Override
     public void writeNullableLong(Long i64) {
-
+        if (i64 == null) {
+            this.buffer.writeByte(DataConstants.NULL);
+        } else  {
+            this.buffer.writeByte(DataConstants.NOT_NULL);
+            writeLong(i64);
+        }
     }
 
     @Override
     public void writeFloat(float f32) {
-
+        this.buffer.writeFloat(f32);
     }
 
     @Override
     public void writeDouble(float f64) {
-
+        this.buffer.writeDouble(f64);
     }
 
     @Override
     public void writeChar(char c) {
-
+        this.buffer.writeChar(c);
     }
 
     @Override
     public void writeBoolean(boolean bool) {
-
+        this.buffer.writeByte((byte) (bool ? 1 : 0));
     }
 
     @Override
     public void writeNullableBoolean(Boolean bool) {
-
+        if (bool == null) {
+            this.buffer.writeByte(DataConstants.NULL);
+        } else {
+            this.buffer.writeByte(DataConstants.NOT_NULL);
+            writeBoolean(bool);
+        }
     }
 
     @Override
     public void writeString(String s) {
-
+        Utf8Util.writeString(this.buffer, s);
     }
 
     @Override
     public void writeNullableString(String s) {
-
+        Utf8Util.writeNullableString(this.buffer, s);
     }
 
     @Override
     public void writeUTF(String utf) {
-
+        Utf8Util.saveUtf(this.buffer, utf);
     }
 
     @Override
     public void writeSpanString(SpanString s) {
-
+        SpanString.writeSpanString(this.buffer, s);
     }
 
     @Override
     public void writeNullableSpanString(SpanString s) {
-
+        SpanString.writeNullableSpanString(this.buffer, s);
     }
 
     @Override
     public void writeBytes(byte[] src) {
-
+        this.buffer.writeBytes(src);
     }
 
     @Override
     public void writeBytes(byte[] src, int srcStart, int len) {
-
+        this.buffer.writeBytes(src, srcStart,  len);
     }
 
     @Override
     public void writeBytes(PegasusBuffer src, int len) {
-
+        this.buffer.writeBytes(src.byteBuf(), len);
     }
 
     @Override
     public void writeBytes(PegasusBuffer src, int srcStart, int len) {
-
+        this.buffer.writeBytes(src.byteBuf(), srcStart, len);
     }
 
     @Override
     public void writeBytes(ByteBuf src, int len) {
-
+        this.buffer.writeBytes(src, len);
     }
 
     @Override
     public void writeBytes(ByteBuf src, int srcStart, int len) {
-
+        this.buffer.writeBytes(src, srcStart,  len);
     }
 
     @Override
     public void writeBytes(ByteBuffer src) {
+        this.buffer.writeBytes(src);
+    }
 
+    private String readString0() {
+        int len = this.buffer.readInt();
+        if (len < 9) {
+            char[] chars = new char[len];
+            for (int i = 0; i < len; i++) {
+                chars[i] = (char) buffer.readShort();
+            }
+
+            return new String(chars);
+        } else if (len < 0xfff) {
+            return readUTF();
+        } else {
+            return new String(BytesUtil.readFromByteBuf(buffer));
+        }
     }
 }
