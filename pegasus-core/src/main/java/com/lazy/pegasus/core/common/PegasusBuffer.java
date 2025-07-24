@@ -1,6 +1,9 @@
 package com.lazy.pegasus.core.common;
 
+import com.lazy.pegasus.core.buffer.PegasusChannelBuffer;
 import io.netty.buffer.ByteBuf;
+import io.netty.buffer.PooledByteBufAllocator;
+import io.netty.buffer.Unpooled;
 
 import java.nio.ByteBuffer;
 
@@ -9,9 +12,89 @@ import java.nio.ByteBuffer;
  * <p>
  * Most of its implementations come from netty ChannelBuffer
  * <p>
- * Instance of this can be obtained from factory.
+ * Instance of this can be obtained via static methods like factory.
  */
 public interface PegasusBuffer extends SequenceAccessBuffer, RandomAccessBuffer {
+
+    PooledByteBufAllocator ALLOCATOR = PooledByteBufAllocator.DEFAULT;
+
+    /**
+     * Creates a self-expanding releasable-buffer from pool with the given initial size.
+     *
+     * @param size initial size
+     * @return a self-expanding releasable-buffer from pool
+     */
+    static PegasusBuffer pooledBuffer(final int size) {
+        return new PegasusChannelBuffer(ALLOCATOR.heapBuffer(size), true);
+    }
+
+    /**
+     * Creates a self-expanding {@link PegasusBuffer} with given initial size.
+     *
+     * @param size initial size
+     * @return a self-expanding buffer starting with the initial size
+     */
+    static PegasusBuffer dynamicBuffer(final int size) {
+        return new PegasusChannelBuffer(Unpooled.buffer(size));
+    }
+
+    /**
+     * Creates a self-expanding {@link PegasusBuffer} with given initial data. This initial data will be transferred into
+     * buffer on construction, and {@code readeIndex}, {@code writeIndex} respectively is 0, {@code data.length}
+     *
+     * @param data initial data
+     * @return a self-expanding buffer with initial data
+     */
+    static PegasusBuffer dynamicBuffer(final byte[] data) {
+        PegasusBuffer buf = dynamicBuffer(data.length);
+        buf.writeBytes(data);
+
+        return buf;
+    }
+
+    /**
+     * Creates a fixed-size {@link PegasusBuffer} with given size. This buffer could not expand when try to write an index
+     * that is over capacity.
+     *
+     * @param size fixed size
+     * @return a fixed-size buffer
+     */
+    static PegasusBuffer fixedBuffer(final int size) {
+        return new PegasusChannelBuffer(Unpooled.buffer(size, size));
+    }
+
+    /**
+     * Creates a {@link PegasusBuffer} wrapping an underlying byte array data, the underlying and this buffer share
+     * same reference of data, modification on each content affect each other.
+     *
+     * @param underlying underlying byte array
+     * @return a fixed-size buffer with underlying data
+     */
+    static PegasusBuffer wrap(final byte[] underlying) {
+        return new PegasusChannelBuffer(Unpooled.wrappedBuffer(underlying));
+    }
+
+    /**
+     * Creates a {@link PegasusBuffer} wrapping an underlying NIO buffer data, the underlying and this buffer share
+     * same reference of data, modification on each content affect each other.
+     *
+     * @param underlying underlying NIO buffer
+     * @return a fixed-size buffer with underlying data
+     */
+    static PegasusBuffer wrap(final ByteBuffer underlying) {
+        return new PegasusChannelBuffer(Unpooled.wrappedBuffer(underlying));
+    }
+
+    /**
+     * Creates a {@link PegasusBuffer} wrapping an underlying Netty buffer, the underlying and this buffer share
+     * same reference of data, modification on each content affect each other.
+     *
+     * @param underlying underlying Netty buffer
+     * @return a fixed-size buffer with underlying data
+     */
+    static PegasusBuffer wrap(final ByteBuf underlying) {
+        return new PegasusChannelBuffer(Unpooled.wrappedBuffer(underlying));
+    }
 
     /**
      * @return number of allocated bytes in this buffer.
